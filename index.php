@@ -1,7 +1,7 @@
 <?php
 
 // Punch through the Pantheon edge cache. This is not required
-// when building a full Drupal site.
+// when building a full Drupal site, just so we don't worry about testing.
 setcookie('NO_CACHE', '1');
 
 $test_port = PANTHEON_SOIP_ICANHAZIP;
