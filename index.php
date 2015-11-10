@@ -22,6 +22,8 @@ print "Through the stunnel, icanhazip.com service reports an ip: ";
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, "127.0.0.1");
 curl_setopt($ch, CURLOPT_PORT, $test_port);
+// The hostname where the request should be sent.
+curl_setopt($ch, CURLOPT_HTTPHEADER, array('Host: example.com'));
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $start = microtime(true);
 print curl_exec($ch);
@@ -34,6 +36,8 @@ $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, "https://127.0.0.1");
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 curl_setopt($ch, CURLOPT_PORT, $test_https_port);
+// The hostname where the request should be sent.
+curl_setopt($ch, CURLOPT_HTTPHEADER, array('Host: example.com'));
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $start = microtime(true);
 print curl_exec($ch);
