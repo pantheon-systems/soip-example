@@ -8,6 +8,8 @@ print "Through the stunnel, hit the remote service";
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, "127.0.0.1");
 curl_setopt($ch, CURLOPT_PORT, PANTHEON_SOIP_XXXXX_YOUR_SERVICE_NAME);
+// The hostname where the request should be sent.
+curl_setopt($ch, CURLOPT_HTTPHEADER, array('Host: example.com'));
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $start = microtime(true);
 $result = curl_exec($ch);
