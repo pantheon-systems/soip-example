@@ -6,7 +6,7 @@ setcookie('NO_CACHE', '1');
 
 /////////////////
 $url = "https://site.com:443/v1/o/test";
-$soip_constant_name = "PANTHEON_SOIP_XXXXX_YOUR_SERVICE_NAME"
+$soip_constant_name = "PANTHEON_SOIP_XXXXX_YOUR_SERVICE_NAME";
 ////////////////
 
 print "Through the stunnel, hit the remote service\n";
