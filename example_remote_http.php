@@ -6,7 +6,7 @@ setcookie('NO_CACHE', '1');
 
 /////////////////
 $url = "https://site.com:443/v1/o/test";
-$soip_constant_name = "PANTHEON_SOIP_XXXXX_YOUR_SERVICE_NAME"
+$soip_constant_name = "PANTHEON_SOIP_XXXXX_YOUR_SERVICE_NAME";
 ////////////////
 
 print "Through the stunnel, hit the remote service\n";
@@ -15,13 +15,13 @@ print "\n port : " . constant($soip_constant_name);
 // Create a "resolve_host" that will point to localhost and resolve externally
 $host = parse_url($url, PHP_URL_HOST);
 $localhost = "127.0.0.1";
-$resolve_host = array(sprintf("%s:%d:%s", $host, constant($soip_constant_name, $localhost));
+$resolve_host = array(sprintf("%s:%d:%s", $host, constant($soip_constant_name), $localhost));
 print "\n resolve_host : " . implode($resolve_host);
 
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_RESOLVE, $resolve_host);
-curl_setopt($ch, CURLOPT_PORT, PHP_CONSTANT);
+curl_setopt($ch, CURLOPT_PORT, constant($soip_constant_name));
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
 curl_setopt($ch, CURLOPT_VERBOSE, TRUE);
