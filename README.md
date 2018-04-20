@@ -6,7 +6,7 @@ Demo code for Pantheon's single-origin IP service.
 License
 -------
 
-Copyright (c) 2014 Pantheon Developers
+Copyright (c) 2018 Pantheon Developers
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
