@@ -4,9 +4,29 @@
 // when building a full Drupal site, just so we don't worry about testing.
 setcookie('NO_CACHE', '1');
 
+// To test your Pantheon Enterprise Gateway, you will need two things:
+// - the domain that corresponds to the IP address you provided or
+//    the domain and query, if you'd like to test that
+// - the service name you provided
+// Replace https://remotesite.com/v1/o/test with your domain
+// Replace YOUR_SERVICE_NAME with the service name you provided
+
+// The $url should NOT contain a port number.
+// The domain must match the domain on the external server SSL cert. 
+
+// Example where the external service is at https://external-server.com
+// and the service name is MY_SERVICE
+// $url = "https://external-server.com/service?query=something&contentType=json'
+// $soip_constant_name = "PANTHEON_SOIP_MY_SERVICE
+
+// Example where the external service is at ldaps://ldap.external-server.com
+// and the service name is MY_SERVICE
+// $url = "ldaps://ldap.external-server.com/'
+// $soip_constant_name = "PANTHEON_SOIP_MY_SERVICE
+
 /////////////////
-$url = "https://site.com:443/v1/o/test";
-$soip_constant_name = "PANTHEON_SOIP_XXXXX_YOUR_SERVICE_NAME";
+$url = "https://site.com/v1/o/test";
+$soip_constant_name = "PANTHEON_SOIP_YOUR_SERVICE_NAME";
 ////////////////
 
 print "Through the stunnel, hit the remote service\n";
