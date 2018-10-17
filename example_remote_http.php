@@ -53,8 +53,16 @@ $error = curl_error($ch);
 curl_close($ch);
 print "<h2>Contacting Remote Service</h2>";
 print "Queried remote service in " . (microtime(true) - $start) . " seconds";
-print "<h2>Result</h2>";
-print "<pre>";
-print htmlspecialchars($result);
-print "</pre>";
+if (isset($result)) {
+  print "<h2>Result</h2>";
+  print "<pre>";
+  print htmlspecialchars($result);
+  print "</pre>";
+}
+if (isset($error)) {
+  print "<h2>Errors</h2>";
+  print "<pre>";
+  print htmlspecialchars($error);
+  print "</pre>";
+}
 ?>
