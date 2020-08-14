@@ -32,19 +32,18 @@ $soip_constant_name = "PANTHEON_SOIP_YOUR_SERVICE_NAME";
 print "Through the stunnel, hit the remote service\n";
 print "\n port : " . constant($soip_constant_name);
 
-// Create a "resolve_host" that will point to localhost and resolve externally
+// Create a "connect_to" array that will tell libcurl how to send this request through our tunnel
 $host = parse_url($url, PHP_URL_HOST);
-$localhost = "127.0.0.1";
-$resolve_host = array(sprintf("%s:%d:%s", $host, constant($soip_constant_name), $localhost));
-print "\n resolve_host : " . implode($resolve_host);
+$connect_to = array(sprintf("%s:443:127.0.0.1:%d", $host, constant($soip_constant_name)));
+print "\n connect_to : " . implode($connect_to);
 
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_RESOLVE, $resolve_host);
-curl_setopt($ch, CURLOPT_PORT, constant($soip_constant_name));
+curl_setopt($ch, CURLOPT_CONNECT_TO, $connect_to);
 curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
 curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
 curl_setopt($ch, CURLOPT_VERBOSE, true);
 $start = microtime(true);
