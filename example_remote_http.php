@@ -33,13 +33,31 @@ print "Through the stunnel, hit the remote service\n";
 print "\n port : " . constant($soip_constant_name);
 
 // Create a "connect_to" array that will tell libcurl how to send this request through our tunnel
-$host = parse_url($url, PHP_URL_HOST);
-$connect_to = array(sprintf("%s:443:127.0.0.1:%d", $host, constant($soip_constant_name)));
-print "\n connect_to : " . implode($connect_to);
+$urlComponents = parse_url($url);
+$host = $urlComponents['host'];
 
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_CONNECT_TO, $connect_to);
+
+if (filter_var($host, FILTER_VALIDATE_IP)) {
+  $newURL = sprintf("%s://%s:%s%s", $urlComponents['scheme'], 127.0.0.1, constant($soip_constant_name), $urlComponents['path']);
+  if ($urlComponents['query'] ?? false) {
+    $newURL .= '?' $urlComponents['query']
+  }
+
+  print "\n soip_url : " . implode($newURL);
+  curl_setopt($ch, CURLOPT_URL, $newURL );
+  
+  if(($urlComponents['user'] ?? false) && ($urlComponents['pass'] ?? false)) {
+    curl_setopt($ch, CURLOPT_USERPWD, $urlComponents['user'] .':'. $urlComponents['pass']);
+  }
+} else {
+  curl_setopt($ch, CURLOPT_URL, $url);
+  $connect_to = array(sprintf("%s:443:127.0.0.1:%d", $host, constant($soip_constant_name)));
+  print "\n connect_to : " . implode($connect_to);
+  curl_setopt($ch, CURLOPT_CONNECT_TO, $connect_to);
+}
+
+
 curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
 curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
