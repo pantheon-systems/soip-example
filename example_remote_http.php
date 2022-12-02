@@ -57,14 +57,20 @@ if (filter_var($host, FILTER_VALIDATE_IP)) {
   curl_setopt($ch, CURLOPT_CONNECT_TO, $connect_to);
 }
 
-
 curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
 curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+curl_setopt($ch, CURLOPT_HEADER, 1);
+
 curl_setopt($ch, CURLOPT_VERBOSE, true);
-curl_setopt($ch, CURLOPT_HEADER, true);
+$err = fopen('php://memory', 'w+');
+curl_setopt($ch, CURLOPT_STDERR, $err);
+
 $start = microtime(true);
 $result = curl_exec($ch);
 $error = curl_error($ch);
@@ -83,4 +89,9 @@ if (isset($error)) {
   print htmlspecialchars($error);
   print "</pre>";
 }
-?>
+
+rewind($err);
+print "<h2>Verbose output</h2>";
+print "<pre>";
+print htmlspecialchars(stream_get_contents($err));
+print "</pre>";
