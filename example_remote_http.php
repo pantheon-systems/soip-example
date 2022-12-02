@@ -39,7 +39,7 @@ $host = $urlComponents['host'];
 $ch = curl_init();
 
 if (filter_var($host, FILTER_VALIDATE_IP)) {
-  $newURL = sprintf("%s://%s:%s%s", $urlComponents['scheme'], 127.0.0.1, constant($soip_constant_name), $urlComponents['path']);
+  $newURL = sprintf("%s://%s:%s%s", $urlComponents['scheme'], "127.0.0.1", constant($soip_constant_name), $urlComponents['path'] ?? '');
   if ($urlComponents['query'] ?? false) {
     $newURL .= '?' . $urlComponents['query']
   }
