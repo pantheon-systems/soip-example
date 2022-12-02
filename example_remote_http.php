@@ -44,7 +44,7 @@ if (filter_var($host, FILTER_VALIDATE_IP)) {
     $newURL .= '?' . $urlComponents['query']
   }
 
-  print "\n soip_url : " . implode($newURL);
+  print "\n soip_url : " . $newURL;
   curl_setopt($ch, CURLOPT_URL, $newURL );
   
   if(($urlComponents['user'] ?? false) && ($urlComponents['pass'] ?? false)) {
@@ -64,6 +64,7 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
 curl_setopt($ch, CURLOPT_VERBOSE, true);
+curl_setopt($ch, CURLOPT_HEADER, true);
 $start = microtime(true);
 $result = curl_exec($ch);
 $error = curl_error($ch);
