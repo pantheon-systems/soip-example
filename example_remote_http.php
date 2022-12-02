@@ -68,6 +68,7 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
 curl_setopt($ch, CURLOPT_HEADER, 1);
 
 curl_setopt($ch, CURLOPT_VERBOSE, true);
+curl_setopt($ch, CURLOPT_CERTINFO, 1);
 $err = fopen('php://memory', 'w+');
 curl_setopt($ch, CURLOPT_STDERR, $err);
 
