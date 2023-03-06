@@ -3,6 +3,14 @@ Single-origin IP example code
 
 Demo code for Pantheon's single-origin IP service.
 
+Usage
+-----------------------------
+
+- Upload the file to your Pantheon Site environment. Preferably, place it in the root folder
+- Access the PHP file via your browser (dev-yoursite.pantheonsite.io/example_remote_http.php)
+- Observe the results printed on the page
+
+
 License
 -------
 
