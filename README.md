@@ -1,6 +1,8 @@
 Single-origin IP example code
 -----------------------------
 
+[![Unofficial](https://img.shields.io/badge/Pantheon-Unsupported-yellow?logo=pantheon&color=FFDC28)](https://pantheon.io/docs/oss-support-levels#unofficial-support) 
+
 Demo code for Pantheon's single-origin IP service.
 
 Usage
